@@ -18,13 +18,14 @@ def get_balance(amt,balance):
     return balance
 
 if __name__ =="__main__":
-    bal=0
+    curr_bal=0
     prev_balance=0
     while True:
-        
+        prev_balance=curr_bal
         amt=get_deposit()
-        balance=get_balance(amt,bal)
-        prev_balance=balance+prev_balance
+        curr_bal=get_balance(amt,curr_bal)
+        print(f"Previous Balance: {prev_balance}")
+        print(f"Current Balance: {curr_bal}")  
         # balance(amt,balance)  
         # print (f"total remaining balance is {total_balance}")    
         flag=contd()
