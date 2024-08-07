@@ -66,6 +66,10 @@ def get_balance(amt,balance):
     print (f"the total balance is {balance}")
     return balance
 
+def bet_win(win_lines,bet_amt):
+    total_amt=int(win_lines)*int(bet_amt)
+    return total_amt
+
 def no_of_lines():
     line=input("enter how many lines you want to bet")
     if int(line)<3:
@@ -105,7 +109,8 @@ if __name__ =="__main__":
             
             recent = win_lines(lines[i-1])
             win_ctr=win_ctr+recent
-        print (f"you have won {win_ctr} lines in this bet")
+        total_won=bet_win(win_ctr,bet_amt)
+        print (f"you have won {win_ctr} lines in this bet. Total money earned {total_won}")
 
         # for i in range(1,4):
         #     win_ctr=0
