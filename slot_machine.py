@@ -1,5 +1,43 @@
 import random
 
+row_len=3
+col_len=3
+
+slot_cards={
+    "A":1,
+    "B":2,
+    "C":3,
+    "D":4,
+    "E":5
+}
+line1=[]
+line2=[]
+line3=[]
+
+def generate_line(row_len,col_len):
+    for i in range(row_len):
+        for k in  range(col_len):
+            if i==0:
+                card=get_symb(slot_cards)
+                line1.append(card)
+            if i==1:
+                card=get_symb(slot_cards)
+                line2.append(card)
+            if i==2:
+                card=get_symb(slot_cards)
+                line3.append(card)
+                
+    print (line1)
+    print (line2)
+    print (line3)   
+
+def get_symb(symbol):
+    all_symbol=[]
+    for symbol,ind in symbol.items():
+        all_symbol.append(symbol)
+    rand_symb=random.sample(all_symbol,1)
+    return rand_symb
+
 def get_deposit():
     deposit=input("how much money would you like to deposit?")
     if deposit<="0":
@@ -17,6 +55,23 @@ def get_balance(amt,balance):
     print (f"the total balance is {balance}")
     return balance
 
+def no_of_lines():
+    line=input("enter how many lines you want to bet")
+    if int(line)<3:
+        line_amt=input("enter your bet amount per line")
+        bet_amt=int(line)*int(line_amt)
+        print (f"the total bet amount is {bet_amt}")
+        return bet_amt
+    else:
+        print ("line should be less than 3")
+        
+def place_bet(bet_amt,curr_balance):
+    if int(curr_balance)>int(bet_amt):
+        remaining_balance=curr_balance-bet_amt
+        print (f"remaining balance: {remaining_balance}")
+        return remaining_balance
+    print("exiting from place_bet")
+
 if __name__ =="__main__":
     curr_bal=0
     prev_balance=0
@@ -26,6 +81,12 @@ if __name__ =="__main__":
         curr_bal=get_balance(amt,curr_bal)
         print(f"Previous Balance: {prev_balance}")
         print(f"Current Balance: {curr_bal}")  
+        bet_amt=no_of_lines()
+        place_bet(bet_amt,curr_bal)
+        
+        generate_line(row_len,col_len)
+        
+                
         # balance(amt,balance)  
         # print (f"total remaining balance is {total_balance}")    
         flag=contd()
