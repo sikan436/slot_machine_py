@@ -35,8 +35,17 @@ def get_symb(symbol):
     all_symbol=[]
     for symbol,ind in symbol.items():
         all_symbol.append(symbol)
-    rand_symb=random.sample(all_symbol,1)
+    rand_symb=random.choice(all_symbol)
     return rand_symb
+
+def win_lines(line):
+    cnt=line.count(line[0])
+    print (cnt)
+    if cnt!=3:
+        print ("you loose" )
+    else:
+        print ("you win")
+            
 
 def get_deposit():
     deposit=input("how much money would you like to deposit?")
@@ -85,6 +94,11 @@ if __name__ =="__main__":
         place_bet(bet_amt,curr_bal)
         
         generate_line(row_len,col_len)
+        for i in range(1,4):
+            win_lines(f"line{i}")
+        line1=[]
+        line2=[]
+        line3=[]
         
                 
         # balance(amt,balance)  
