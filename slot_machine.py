@@ -82,22 +82,23 @@ def no_of_lines():
         
 def place_bet(bet_amt,curr_balance):
     if int(curr_balance)>int(bet_amt):
-        remaining_balance=curr_balance-bet_amt
-        print (f"remaining balance: {remaining_balance}")
-        return remaining_balance
-    print("exiting from place_bet")
-
+        print ("placing the bet now")
+    else:
+        print ("current balance is insuffecient")
+        # remaining_balance=curr_balance-bet_amt
+        # print (f"remaining balance: {remaining_balance}")
+        # return remaining_balance
 if __name__ =="__main__":
     curr_bal=0
     prev_balance=0
     while True:
         prev_balance=curr_bal
         amt=get_deposit()
-        curr_bal=get_balance(amt,curr_bal)
+    
         print(f"Previous Balance: {prev_balance}")
-        print(f"Current Balance: {curr_bal}")  
+ 
         bet_amt=no_of_lines()
-        place_bet(bet_amt,curr_bal)
+        place_bet(bet_amt,amt)
         
         generate_line(row_len,col_len)
         print (line1)
@@ -111,7 +112,8 @@ if __name__ =="__main__":
             win_ctr=win_ctr+recent
         total_won=bet_win(win_ctr,bet_amt)
         print (f"you have won {win_ctr} lines in this bet. Total money earned {total_won}")
-
+        curr_bal=get_balance(amt,curr_bal)
+        print(f"Current Balance: {curr_bal}") 
         # for i in range(1,4):
         #     win_ctr=0
         #     recent=win_lines(line1
@@ -126,7 +128,7 @@ if __name__ =="__main__":
         
                 
         # balance(amt,balance)  
-        # print (f"total remaining balance is {total_balance}")    
+        # print (f"ltotal remaining balance is {total_balance}")    
         flag=contd()
         
     
