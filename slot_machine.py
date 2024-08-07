@@ -13,6 +13,7 @@ slot_cards={
 line1=[]
 line2=[]
 line3=[]
+lines = [line1, line2, line3]
 
 def generate_line(row_len,col_len):
     for i in range(row_len):
@@ -27,9 +28,7 @@ def generate_line(row_len,col_len):
                 card=get_symb(slot_cards)
                 line3.append(card)
                 
-    print (line1)
-    print (line2)
-    print (line3)   
+  
 
 def get_symb(symbol):
     all_symbol=[]
@@ -39,12 +38,15 @@ def get_symb(symbol):
     return rand_symb
 
 def win_lines(line):
+
     cnt=line.count(line[0])
-    print (cnt)
+
     if cnt!=3:
-        print ("you loose" )
+
+        return 0
     else:
-        print ("you win")
+
+        return 1
             
 
 def get_deposit():
@@ -94,11 +96,28 @@ if __name__ =="__main__":
         place_bet(bet_amt,curr_bal)
         
         generate_line(row_len,col_len)
-        for i in range(1,4):
-            win_lines(f"line{i}")
-        line1=[]
-        line2=[]
-        line3=[]
+        print (line1)
+        print (line2)
+        print (line3) 
+        print ("###################")
+        win_ctr=0
+        for i in range(1, 4):
+            
+            recent = win_lines(lines[i-1])
+            win_ctr=win_ctr+recent
+        print (f"you have won {win_ctr} lines in this bet")
+
+        # for i in range(1,4):
+        #     win_ctr=0
+        #     recent=win_lines(line1
+        #     win_ctr=win_ctr+recent
+        #     print (f"total win lines till now {win_ctr}")
+        line1.clear()
+        line2.clear()
+        line3.clear()
+
+
+
         
                 
         # balance(amt,balance)  
