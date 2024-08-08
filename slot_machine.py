@@ -1,4 +1,5 @@
 import random
+import sys
 
 row_len=3
 col_len=3
@@ -53,17 +54,18 @@ def get_deposit():
     deposit=input("how much money would you like to deposit?")
     if deposit<="0":
         print ("zero or negative deposit not allowed")
+        contd()
     else:    
         print (f"your deposit of {deposit} amount successful")
     return deposit
 
 def contd():
     cont=input("do u want to continue? y or n")
-    return cont
+    if cont=="n":
+        sys.exit(0)        
 
 def get_balance(amt,balance):
     balance=int(balance)+int(amt)
-    print (f"the total balance is {balance}")
     return balance
 
 def bet_win(win_lines,bet_amt):
@@ -79,22 +81,30 @@ def no_of_lines():
         return bet_amt
     else:
         print ("line should be less than 3")
+        contd()
         
 def place_bet(bet_amt,curr_balance):
-    if int(curr_balance)>int(bet_amt):
+    if int(curr_balance)>=int(bet_amt):
         print ("placing the bet now")
     else:
         print ("current balance is insuffecient")
-        # remaining_balance=curr_balance-bet_amt
-        # print (f"remaining balance: {remaining_balance}")
-        # return remaining_balance
+        contd()
+        
+def rem_bal(total_won,curr_bal,bet_amt):
+    if total_won==0:
+        curr_bal=curr_bal-bet_amt
+    else:
+        curr_bal=curr_bal+ total_won
+    return curr_bal
+
 if __name__ =="__main__":
     curr_bal=0
     prev_balance=0
     while True:
         prev_balance=curr_bal
         amt=get_deposit()
-    
+        curr_bal=get_balance(amt,curr_bal)
+        print(f"Current Balance: {curr_bal}") 
         print(f"Previous Balance: {prev_balance}")
  
         bet_amt=no_of_lines()
@@ -112,29 +122,15 @@ if __name__ =="__main__":
             win_ctr=win_ctr+recent
         total_won=bet_win(win_ctr,bet_amt)
         print (f"you have won {win_ctr} lines in this bet. Total money earned {total_won}")
-        curr_bal=get_balance(amt,curr_bal)
-        print(f"Current Balance: {curr_bal}") 
-        # for i in range(1,4):
-        #     win_ctr=0
-        #     recent=win_lines(line1
-        #     win_ctr=win_ctr+recent
-        #     print (f"total win lines till now {win_ctr}")
+        curr_bal=rem_bal(total_won,curr_bal,bet_amt)
+        print (f"remaining balance after round {curr_bal}")
+
         line1.clear()
         line2.clear()
         line3.clear()
-
-
-
-        
-                
-        # balance(amt,balance)  
-        # print (f"ltotal remaining balance is {total_balance}")    
-        flag=contd()
+        contd()
         
     
-
-        if flag=="n":
-            break
 
 
 
