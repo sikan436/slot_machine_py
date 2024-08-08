@@ -54,15 +54,20 @@ def get_deposit():
     deposit=input("how much money would you like to deposit?")
     if deposit<="0":
         print ("zero or negative deposit not allowed")
-        contd()
+        exit_program()
     else:    
         print (f"your deposit of {deposit} amount successful")
     return deposit
 
+def exit_program():
+     sys.exit(0)
+
+
 def contd():
     cont=input("do u want to continue? y or n")
     if cont=="n":
-        sys.exit(0)        
+        exit_program()
+              
 
 def get_balance(amt,balance):
     balance=int(balance)+int(amt)
@@ -81,14 +86,14 @@ def no_of_lines():
         return bet_amt
     else:
         print ("line should be less than 3")
-        contd()
+        exit_program()
         
 def place_bet(bet_amt,curr_balance):
     if int(curr_balance)>=int(bet_amt):
         print ("placing the bet now")
     else:
         print ("current balance is insuffecient")
-        contd()
+        exit_program()
         
 def rem_bal(total_won,curr_bal,bet_amt):
     if total_won==0:
