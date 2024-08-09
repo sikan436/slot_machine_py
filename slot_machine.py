@@ -79,13 +79,13 @@ def bet_win(win_lines,bet_amt):
 
 def no_of_lines():
     line=input("enter how many lines you want to bet")
-    if int(line)<3:
+    if int(line)<=3 :
         line_amt=input("enter your bet amount per line")
         bet_amt=int(line)*int(line_amt)
         print (f"the total bet amount is {bet_amt}")
         return bet_amt
     else:
-        print ("line should be less than 3")
+        print ("Lines should be numeric and less than 4")
         exit_program()
         
 def place_bet(bet_amt,curr_balance):
@@ -106,10 +106,8 @@ def display_lines():
        list(map(print,lines))
 
 
-def empty_list():
-        line1.clear()
-        line2.clear()
-        line3.clear()
+def clear_list(list):
+    list.clear()
 
 def display_balance(curr_bal,prev_balance):
         print(f"Current Balance: {curr_bal}") 
@@ -140,7 +138,7 @@ def game():
         print (f"you have won {win_ctr} lines in this bet. Total money earned {total_won}")
         curr_bal=rem_bal(total_won,curr_bal,bet_amt)
         print (f"remaining balance after round {curr_bal}")
-        empty_list()
+        list(map(clear_list,lines))
         contd()
 
 if __name__ =="__main__":
