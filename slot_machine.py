@@ -103,9 +103,7 @@ def rem_bal(total_won,curr_bal,bet_amt):
     return curr_bal
 
 def display_lines():
-        print (line1)
-        print (line2)
-        print (line3) 
+       list(map(print,lines))
 
 
 def empty_list():
