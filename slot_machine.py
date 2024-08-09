@@ -102,39 +102,51 @@ def rem_bal(total_won,curr_bal,bet_amt):
         curr_bal=curr_bal+ total_won
     return curr_bal
 
-if __name__ =="__main__":
+def display_lines():
+        print (line1)
+        print (line2)
+        print (line3) 
+
+
+def empty_list():
+        line1.clear()
+        line2.clear()
+        line3.clear()
+
+def display_balance(curr_bal,prev_balance):
+        print(f"Current Balance: {curr_bal}") 
+        print(f"Previous Balance: {prev_balance}")
+ 
+def win_count(lines):
+    win_ctr=0
+    for i in range(1, 4):
+            
+            recent = win_lines(lines[i-1])
+            win_ctr=win_ctr+recent
+    return win_ctr
+
+def game():
     curr_bal=0
     prev_balance=0
     while True:
         prev_balance=curr_bal
         amt=get_deposit()
         curr_bal=get_balance(amt,curr_bal)
-        print(f"Current Balance: {curr_bal}") 
-        print(f"Previous Balance: {prev_balance}")
- 
+        display_balance(curr_bal,prev_balance)
         bet_amt=no_of_lines()
-        place_bet(bet_amt,amt)
-        
+        place_bet(bet_amt,amt)       
         generate_line(row_len,col_len)
-        print (line1)
-        print (line2)
-        print (line3) 
-        print ("###################")
-        win_ctr=0
-        for i in range(1, 4):
-            
-            recent = win_lines(lines[i-1])
-            win_ctr=win_ctr+recent
+        display_lines()
+        win_ctr=win_count(lines)
         total_won=bet_win(win_ctr,bet_amt)
         print (f"you have won {win_ctr} lines in this bet. Total money earned {total_won}")
         curr_bal=rem_bal(total_won,curr_bal,bet_amt)
         print (f"remaining balance after round {curr_bal}")
-
-        line1.clear()
-        line2.clear()
-        line3.clear()
+        empty_list()
         contd()
-        
+
+if __name__ =="__main__":
+    game()        
     
 
 
